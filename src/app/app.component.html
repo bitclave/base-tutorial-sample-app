@@ -1,0 +1,8 @@
+<div *ngIf="spinner.waiting | async" class="waitingContainer">
+    <mat-progress-spinner
+      color="accent"
+      class="waiting"
+      mode="indeterminate">
+    </mat-progress-spinner>
+</div>
+<router-outlet></router-outlet>

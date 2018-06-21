@@ -1,0 +1,150 @@
+<div class="dashboard-container">
+    <div class="dashboard-column">
+
+        <div class="dashboard-card">
+            <div class="title-dashboard-card">KARMA</div>
+            <mat-card>
+
+              <div class="wrapper-score-container">
+                <div class="score-container">
+                  <span class="score">{{karma}}</span>
+                  <span class="dashboard-regular-text total">/&nbsp;10</span>
+                </div>
+                <a href="javascript:void(0);" class="question_in_circle"></a>
+              </div>
+
+              <p class="dashboard-regular-text">
+                  You are doing good, keep this score high!
+              </p>
+            </mat-card>
+        </div>
+
+    </div>
+    <div class="dashboard-column">
+
+      <div *ngIf="displayOptions.wallet" class="dashboard-card wallet_box">
+        <div class="title-dashboard-card">WALLET</div>
+        <mat-card>
+          <div class="flex-container mb15">
+            <div class="flex-item">
+              <div class="flex-container flex-container_addon">
+                <div class="flex-item">
+                  <div class="img_box"></div>
+                </div>
+                <div class="flex-item">
+                  <p class="white white_big">CAT balance</p>
+                  <p class="white">Wallet of my dear grand&hellip;</p>
+                </div>
+              </div>
+            </div>
+            <div class="flex-item">
+              <p class="green green_big text-right">48 CAT</p>
+              <p class="green text-right">Pending <strong>+14 CAT</strong></p>
+            </div>
+          </div>
+
+          <div class="flex-container">
+            <div class="flex-item">
+              <button mat-button color="primary" class="show_address"><span>Show address</span></button>
+            </div>
+            <div class="flex-item">
+              <button mat-button color="primary" class="refresh"><span class="refresh_icon"></span><span>Refresh</span></button>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+
+      <div *ngIf="displayOptions.wallet" class="dashboard-card total_balance">
+        <mat-card>
+          <div class="flex-container">
+            <div class="flex-item">
+              <p class="white">Total balance</p>
+              <p>14 wallets</p>
+            </div>
+            <div class="flex-item">
+              <p class="green text-right">ETH 928.104</p>
+              <p class="text-right">$ 558189.58</p>
+            </div>
+          </div>
+        </mat-card>
+      </div>
+
+      <a *ngIf="displayOptions.wallet" href="javascript:void(0);" class="add_wallets"><span>Add wallets</span></a>
+
+      <div *ngIf="displayOptions.rewards" class="dashboard-card">
+        <div class="title-dashboard-card">REWARD HISTORY</div>
+        <mat-card class="dashboard reward-history-widget google_search_history">
+          <mat-list>
+
+            <mat-list-item class="reward-history-widget">
+              <div class="flex-container">
+                <div class="flex-item">
+                  <div class="reward-history-widget title-group">
+                    <p class="acent-text">BitClave</p>
+                    <p class="dashboard-regular-text">Jun 8, 2018, 2:25:20 PM</p>
+                  </div>
+                </div>
+                <div class="flex-item">
+                  <div class="reward-history-widget amount-group">
+                    <p class="dashboard-regular-text color-green"> +9 CAT</p>
+                  </div>
+                </div>
+              </div>
+            </mat-list-item>
+
+            <mat-divider></mat-divider>
+
+            <mat-list-item class="reward-history-widget">
+              <div class="flex-container">
+                <div class="flex-item">
+                  <div class="reward-history-widget title-group">
+                      <p class="acent-text">Chatello ICO</p>
+                      <p class="dashboard-regular-text">Jun 8, 2018, 2:25:20 PM</p>
+                  </div>
+                </div>
+                <div class="flex-item">
+                  <div class="reward-history-widget amount-group">
+                    <p class="dashboard-regular-text color-green"> +2 CAT</p>
+                  </div>
+                </div>
+              </div>
+            </mat-list-item>
+
+            <mat-divider></mat-divider>
+
+            <mat-list-item class="reward-history-widget">
+              <div class="flex-container">
+                <div class="flex-item">
+                  <div class="reward-history-widget title-group">
+                    <p class="acent-text">Chumak & Co INC</p>
+                    <p class="dashboard-regular-text">Jun 8, 2018, 2:25:20 PM</p>
+                  </div>
+                </div>
+                <div class="flex-item">
+                  <div class="reward-history-widget amount-group">
+                    <p class="dashboard-regular-text color-green"> +17 CAT</p>
+                  </div>
+                </div>
+              </div>
+            </mat-list-item>
+
+            <mat-divider></mat-divider>
+
+            <mat-card-actions align="center">
+                <button mat-button color="primary"><span>Show all</span></button>
+            </mat-card-actions>
+          </mat-list>
+        </mat-card>
+      </div>
+
+      <div *ngIf="displayOptions.kyc" class="dashboard-card">
+        <div class="title-dashboard-card">KYC</div>
+        <mat-card>
+          <mat-card-actions class="dashboard verified_user">
+            <button mat-button color="primary"><mat-icon class="svg_icon" svgIcon="verified">verified</mat-icon><span>Verified user</span></button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+
+    </div>
+  </div>

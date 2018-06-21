@@ -1,0 +1,72 @@
+<mat-toolbar class="wrapper_header_box">
+<div>
+	<div class="flex-container">
+
+		<div class="flex-item">
+			<div class="wrapper_logo"><img src="assets/logo.png" alt="BitClave logo"></div>
+		</div>
+
+		<div class="flex-item">
+			<button mat-mini-fab class="persona_link" color="#fff" [matMenuTriggerFor]="menu">
+				<mat-icon aria-label="Example icon-button with a heart icon">perm_identity</mat-icon>
+			</button>
+
+			<mat-menu  #menu="matMenu">
+			<div>
+				<div class="myAccount">MY ACCOUNT</div>
+
+				<div class="keyContainer">
+					<div>
+						<div class="key">{{key}}</div>
+					</div>
+					<div>
+						<a class="copyKey" (click)="copyPublicKey()"><span>Copy address</span></a>
+					</div>
+				</div>
+
+				<mat-divider></mat-divider>
+
+        <button mat-menu-item (click)="delete()"><span>Delete</span></button>
+        <mat-divider></mat-divider>
+
+				<button mat-menu-item (click)="signOut()"><span>Log out</span></button>
+
+			</div>
+			</mat-menu>
+		</div>
+
+	</div>
+</div>
+</mat-toolbar>
+
+
+<mat-sidenav-container fullscreen>
+  <mat-sidenav [ngClass]="{'navigationSideNav':!isCompactMenu, 'navigationSideNavCompact': isCompactMenu}" mode="side" opened>
+    <div class="navigation-container">
+      <mat-nav-list>
+        <mat-list-item [class.cursorHere]="(menuItem | async) === 'dashboard'"  routerLink="/cabinet/dashboard">
+          <mat-icon class="navigation dashboard" svgIcon="dashboard"></mat-icon>
+          <span *ngIf="!isCompactMenu" class="cabinet-navigation">Dashboard</span>
+        </mat-list-item>
+      </mat-nav-list>
+
+      <mat-nav-list>
+        <mat-list-item [class.cursorHere]="(menuItem | async) === 'settings'"  routerLink="/cabinet/settings">
+          <mat-icon class="navigation dashboard" svgIcon="services"></mat-icon>
+          <span *ngIf="!isCompactMenu" class="cabinet-navigation">Crypto Wallets</span>
+        </mat-list-item>
+      </mat-nav-list>
+    </div>
+
+    <button mat-button class="button_togle_sidebar" (click)="transformSideNav()"><span><</span></button> -->
+  </mat-sidenav>
+  <mat-sidenav-content>
+
+      <div class="contentSideNav">
+          <router-outlet></router-outlet>
+      </div>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
