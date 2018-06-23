@@ -1,6 +1,10 @@
-# base-tutorial-sample-app
+# Base Application Starter - AngularJS
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.7.
+This reference application demonstrates how to use BASE PLATFORM using [BASE AUTH SDK](https://github.com/bitclave/base-auth-sdk).
+
+The application uses **Login** widget from [BASE AUTH FRONTEND](https://github.com/bitclave/base-auth-frontend) which allows user to create his BASE account by choosing a passphrase. Passphrase will be used to create his private & public key pair.  Use will be able to use his private key to encrypt his data and save it to BASE. User can retrieve his data any time from BASE and decrypt it. Either passphrase or private key is never sent to BASE platform.
+
+This application provides a boilderplate for *AngularJS* application and build using [angular cli](https://github.com/angular/angular-cli).
 
 ## Development server
 
