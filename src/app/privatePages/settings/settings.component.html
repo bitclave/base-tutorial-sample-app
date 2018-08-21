@@ -1,24 +1,24 @@
 <div class="secret-admin-container">
     <mat-card>
       <mat-card-header>
-          <mat-card-title>Carma</mat-card-title>
+          <mat-card-title>Karma</mat-card-title>
       </mat-card-header>
       <mat-card-content class="verticalContainer">
 
         <mat-form-field>
-          <input max="1000" min="0"step="1" matInput type="number" placeholder="carma"
+          <input max="1000" min="0"step="1" matInput type="number" placeholder="Karma"
             [(ngModel)]="karma">
         </mat-form-field>
 
           <mat-card-actions align="end">
-            <button color="primary" (click)="saveCarma()" mat-button>save carma to base</button>
+            <button color="primary" (click)="saveCarma()" mat-button>Save Karma</button>
           </mat-card-actions>
       </mat-card-content>
     </mat-card>
 
     <mat-card>
         <mat-card-header>
-            <mat-card-title>display options</mat-card-title>
+            <mat-card-title>Options</mat-card-title>
         </mat-card-header>
         <mat-card-content>
             <div class="verticalContainer">
@@ -41,14 +41,14 @@
 
             </div>
             <mat-card-actions align="end">
-              <button color="primary" (click)="saveDisplayOptions()" mat-button>save display options to base</button>
+              <button color="primary" (click)="saveDisplayOptions()" mat-button>Save Options</button>
             </mat-card-actions>
         </mat-card-content>
     </mat-card>
 
     <mat-card>
         <mat-card-header>
-            <mat-card-title>key value data</mat-card-title>
+            <mat-card-title>Key Value Data</mat-card-title>
         </mat-card-header>
         <mat-card-content class="verticalContainer">
             <pre>{{displayOptions | json}}</pre>
