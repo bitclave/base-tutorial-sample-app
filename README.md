@@ -6,6 +6,13 @@ The application uses **Login** widget from [BASE AUTH FRONTEND](https://github.c
 
 This application provides a boilderplate for *AngularJS* application and build using [angular cli](https://github.com/angular/angular-cli).
 
+## Setup Steps
+- install brew/windows equivelent
+- install node/npm ```brew install node```
+- install angular-cli via npm ```npm i -g angular-cli```
+- from project root run ```npm i``` to install project dependencies
+- run ```npm run start``` to create local build + start development server at localhost:4200
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
