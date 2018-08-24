@@ -16,7 +16,7 @@ This reference application demonstrates how to use BASE platform using [BASE aut
 - from project root run ```npm i``` to install project dependencies
 - run ```npm run start``` to create local build + start development server at localhost:4200
 
-note: if you run into issues with Angular, try to install a sample project from https://angular.io/tutorial/toh-pt0 and run ng build
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
@@ -44,3 +44,5 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ## Troubleshooting
 
 If you run into any node-sass npm issues during install/build process, run ```npm rebuild node-sass``` and then re-run install/build command
+
+If you run into issues with Angular, try to install a sample project from https://angular.io/tutorial/toh-pt0 and run ng build
