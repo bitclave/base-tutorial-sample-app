@@ -1,10 +1,13 @@
 # Base Application Starter - Angular
 
-This reference application demonstrates how to use BASE PLATFORM using [BASE AUTH SDK](https://github.com/bitclave/base-auth-sdk).
+This reference application demonstrates how to use BASE platform using [BASE auth sdk](https://github.com/bitclave/base-auth-sdk)
 
-The application uses **Login** widget from [BASE AUTH FRONTEND](https://github.com/bitclave/base-auth-frontend) which allows user to create his BASE account by choosing a passphrase. Passphrase will be used to create his private & public key pair.  Use will be able to use his private key to encrypt his data and save it to BASE. User can retrieve his data any time from BASE and decrypt it. Either passphrase or private key is never sent to BASE platform.
-
-This application provides a boilderplate for *Angular* application and build using [angular cli](https://github.com/angular/angular-cli).
+## Points of Interest
+- uses **Login** widget from [BASE auth frontend](https://github.com/bitclave/base-auth-frontend)
+- allows user to create his BASE account by choosing a passphrase
+- passphrase will be used to create his private & public key pair
+- user can encrypt his data using his private key and save data in BASE
+- frontend is Angular, generated using [Angular-CLI](https://github.com/angular/angular-cli)
 
 ## Setup Steps
 - install brew/windows equivelent
@@ -36,3 +39,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+## Troubleshooting
+
+If you run into any node-sass npm issues during install/build process, run ```npm rebuild node-sass``` and then re-run install/build command
