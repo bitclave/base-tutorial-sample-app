@@ -1,30 +1,30 @@
-<div class="search-request-container">
+<div class="offer-request-container">
     <mat-card>
         <mat-card-header>
-            <mat-card-title>Search Request testing</mat-card-title>
+            <mat-card-title>Offer testing</mat-card-title>
         </mat-card-header>
         <mat-card-content>
             <div class="verticalContainer">
                 <mat-slide-toggle
                   (change)="getAllRequests($event)">
-                  get all requests
+                  get all offers
                 </mat-slide-toggle>
-                <pre *ngIf="searchRequests">{{searchRequests|json}}</pre>
+                <pre *ngIf="offers">{{offers|json}}</pre>
 
                 <mat-slide-toggle
                   (change)="createRequest($event)">
-                  create request
+                  create offer
                 </mat-slide-toggle>
-                <pre *ngIf="createdSearchRequest">{{createdSearchRequest|json}}</pre>
+                <pre *ngIf="created">{{created|json}}</pre>
 
                 <mat-slide-toggle
                   (change)="updateRequest($event)">
-                  update request
+                  update offer
                 </mat-slide-toggle>
 
                 <mat-slide-toggle
                   (change)="deleteRequest()">
-                  delete request
+                  delete offer
                 </mat-slide-toggle>
 
             </div>

@@ -8,8 +8,8 @@ import { BaseAuthService } from '../../services/base-auth.service';
 })
 export class SearchRequestComponent implements OnInit {
 
-  offers;
-  created;
+  searchRequests;
+  createdSearchRequest;
 
   constructor(
     private baseAuthService: BaseAuthService
@@ -20,60 +20,48 @@ export class SearchRequestComponent implements OnInit {
 
   getAllRequests(flag) {
     if (flag && flag.checked) {
-      this.baseAuthService.widget.getAllOffers().then( data => {
-        this.offers = data;
+      this.baseAuthService.widget.getAllRequests().then( data => {
+        this.searchRequests = data;
         console.log(data);
       });
     } else {
-      this.offers = undefined;
+      this.searchRequests = undefined;
     }
   }
   createRequest(flag) {
     if (flag && flag.checked) {
-      const offer = {
+      const request = {
         id: 0,
         owner: '0x0',
-        description: 'offer description',
-        title: 'title',
-        imageUrl: '',
-        worth: '1',
         tags: new Map([
           ['product', 'car'],
           ['color', 'red'],
           ['producer', 'mazda'],
           ['models', 'RX8']
-        ]),
-        compare: new Map(),
-        rules: new Map(),
-        offerPrices: [
-          {
-            id: 0,
-            description: 'price 1 description',
-            worth: '1.5',
-            rules: [
-              {
-                id: 0,
-                rulesKey: 'age',
-                value: '10',
-                rule: 0
-              }
-            ]
-          }
-        ]
+        ])
       };
-      this.baseAuthService.widget.saveOffer(offer).then( data => {
-        this.created = data;
+      this.baseAuthService.widget.createRequest(request).then( data => {
+        this.createdSearchRequest = data;
         console.log(data);
       });
     } else {
-      this.created = undefined;
+      this.createdSearchRequest = undefined;
     }
   }
-  updateRequest() {
-    console.log('test update');
+  updateRequest(flag) {
+    const now = (new Date()).toISOString();
+    this.createdSearchRequest.tags.set('time', now);
+    this.baseAuthService.widget.createRequest(this.createdSearchRequest).then( data => {
+      this.createdSearchRequest = data;
+      console.log(data);
+    });
+
   }
   deleteRequest() {
-      console.log('test delete');
+    this.baseAuthService.widget.deleteRequest(this.createdSearchRequest).then( data => {
+      this.createdSearchRequest = undefined;
+      console.log(data);
+    });
   }
 
 
