@@ -56,6 +56,20 @@
           <span *ngIf="!isCompactMenu" class="cabinet-navigation">Settings</span>
         </mat-list-item>
       </mat-nav-list>
+
+      <mat-nav-list>
+        <mat-list-item [class.cursorHere]="(menuItem | async) === 'search-request'"  routerLink="/cabinet/search-request">
+          <mat-icon class="navigation dashboard" svgIcon="wallet"></mat-icon>
+          <span *ngIf="!isCompactMenu" class="cabinet-navigation">Requests</span>
+        </mat-list-item>
+      </mat-nav-list>
+
+      <mat-nav-list>
+        <mat-list-item [class.cursorHere]="(menuItem | async) === 'search-request'"  routerLink="/cabinet/offer">
+          <mat-icon class="navigation dashboard" svgIcon="wallet"></mat-icon>
+          <span *ngIf="!isCompactMenu" class="cabinet-navigation">Offers</span>
+        </mat-list-item>
+      </mat-nav-list>
     </div>
 
     <button mat-button class="button_togle_sidebar" (click)="transformSideNav()"><span><</span></button> -->
