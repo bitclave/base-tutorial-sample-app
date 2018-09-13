@@ -12,6 +12,7 @@ import { SettingsModule } from './privatePages/settings/settings.module';
 
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SearchRequestModule } from './privatePages/search-request/search-request.module';
+import { OfferModule } from './privatePages/offer/offer.module';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { SearchRequestModule } from './privatePages/search-request/search-reques
     MatProgressSpinnerModule,
     DashboardModule,
     SettingsModule,
-    SearchRequestModule
+    SearchRequestModule,
+    OfferModule
   ],
   providers: [],
   bootstrap: [AppComponent]
