@@ -9,21 +9,26 @@
                   (change)="getAllRequests($event)">
                   get all requests
                 </mat-slide-toggle>
-                <pre *ngIf="searchRequests">{{searchRequests|json}}</pre>
+                <div *ngIf="searchRequests">
+                  <app-search-request-item *ngFor="let item of searchRequests" [request]="item">
+                  </app-search-request-item>
+                </div>
 
                 <mat-slide-toggle
                   (change)="createRequest($event)">
                   create request
                 </mat-slide-toggle>
-                <pre *ngIf="createdSearchRequest">{{createdSearchRequest|json}}</pre>
+                <div *ngIf="createdSearchRequest">
+                  <app-search-request-item [request]="createdSearchRequest"> </app-search-request-item>
+                </div>
 
-                <mat-slide-toggle
+                <!-- <mat-slide-toggle
                   (change)="updateRequest($event)">
                   update request
-                </mat-slide-toggle>
+                </mat-slide-toggle> -->
 
                 <mat-slide-toggle
-                  (change)="deleteRequest()">
+                  (change)="deleteRequest($event)">
                   delete request
                 </mat-slide-toggle>
 

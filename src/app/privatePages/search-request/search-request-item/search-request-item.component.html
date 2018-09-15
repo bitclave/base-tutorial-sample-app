@@ -1,0 +1,8 @@
+<ul *ngIf="request">
+  <li><span class="draft">id</span> {{request.id}}</li>
+  <li class="public-key"> <span class="draft">PK</span> {{request.owner}}</li>
+  <li class="tag" *ngFor="let one of getKeys(request.tags)">
+    {{one}} : {{request.tags.get(one)}}
+  </li>
+</ul>
+

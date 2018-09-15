@@ -10,6 +10,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { OfferItemComponent } from './offer-item/offer-item.component';
 
 @NgModule({
   imports: [
@@ -23,6 +24,6 @@ import { MatInputModule } from '@angular/material/input';
     MatSlideToggleModule,
     MatButtonModule,
   ],
-  declarations: [OfferComponent]
+  declarations: [OfferComponent, OfferItemComponent]
 })
 export class OfferModule { }

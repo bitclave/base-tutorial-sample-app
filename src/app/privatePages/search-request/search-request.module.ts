@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SearchRequestComponent } from './search-request.component';
+import { SearchRequestItemComponent } from './search-request-item/search-request-item.component';
+
+
 
 import { ReactiveFormsModule, FormsModule} from '@angular/forms';
 
@@ -24,7 +27,8 @@ import { MatInputModule } from '@angular/material/input';
     MatButtonModule,
   ],
   declarations: [
-    SearchRequestComponent
+    SearchRequestComponent,
+    SearchRequestItemComponent
   ]
 })
 export class SearchRequestModule { }

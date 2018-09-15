@@ -6,24 +6,28 @@
         <mat-card-content>
             <div class="verticalContainer">
                 <mat-slide-toggle
-                  (change)="getAllRequests($event)">
+                  (change)="getAllOffers($event)">
                   get all offers
                 </mat-slide-toggle>
-                <pre *ngIf="offers">{{offers|json}}</pre>
+                <div *ngIf="offers">
+                  <app-offer-item *ngFor="let one of offers" [offer]="one"></app-offer-item>
+                </div>
 
                 <mat-slide-toggle
-                  (change)="createRequest($event)">
+                  (change)="createOffer($event)">
                   create offer
                 </mat-slide-toggle>
-                <pre *ngIf="created">{{created|json}}</pre>
+                <div *ngIf="created">
+                    <app-offer-item  [offer]="created"></app-offer-item>
+                </div>
 
-                <mat-slide-toggle
-                  (change)="updateRequest($event)">
+                <!-- <mat-slide-toggle
+                  (change)="updateOffer($event)">
                   update offer
-                </mat-slide-toggle>
+                </mat-slide-toggle> -->
 
                 <mat-slide-toggle
-                  (change)="deleteRequest()">
+                  (change)="deleteOffer($event)">
                   delete offer
                 </mat-slide-toggle>
 

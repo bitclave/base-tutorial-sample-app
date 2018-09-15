@@ -18,7 +18,7 @@ export class OfferComponent implements OnInit {
   ngOnInit() {
   }
 
-  getAllRequests(flag) {
+  getAllOffers(flag) {
     if (flag && flag.checked) {
       this.baseAuthService.widget.getAllOffers().then( data => {
         this.offers = data;
@@ -28,7 +28,7 @@ export class OfferComponent implements OnInit {
       this.offers = undefined;
     }
   }
-  createRequest(flag) {
+  createOffer(flag) {
     if (flag && flag.checked) {
       const offer = {
         id: 0,
@@ -43,8 +43,12 @@ export class OfferComponent implements OnInit {
           ['producer', 'mazda'],
           ['models', 'RX8']
         ]),
-        compare: new Map(),
-        rules: new Map(),
+        compare:  new Map([
+          ['age', '10']
+        ]),
+        rules: new Map([
+          ['age', 0]
+        ]),
         offerPrices: [
           {
             id: 0,
@@ -61,7 +65,45 @@ export class OfferComponent implements OnInit {
           }
         ]
       };
-      this.baseAuthService.widget.saveOffer(offer).then( data => {
+
+
+    const offerJson = {
+      id: 0,
+      owner: '0x0',
+      description: 'offer description',
+      title: 'title',
+      imageUrl: '',
+      worth: '1',
+      tags: {
+        product: 'car',
+        color: 'red',
+        producer: 'mazda',
+        model: 'RX9'
+      },
+      compare: {
+        age: 10
+      },
+      rules: {
+        age: 0
+      },
+      offerPrices: [
+        {
+          id: 0,
+          description: 'price 1 description',
+          worth: '1.5',
+          rules: [
+            {
+              id: 0,
+              rulesKey: 'age',
+              value: '10',
+              rule: 0
+            }
+          ]
+        }
+      ]
+    };
+
+    this.baseAuthService.widget.saveOffer(offer).then( data => {
         this.created = data;
         console.log(data);
       });
@@ -69,11 +111,22 @@ export class OfferComponent implements OnInit {
       this.created = undefined;
     }
   }
-  updateRequest() {
-    console.log('test update');
+  updateOffer(flag) {
+    if (flag && this.created) {
+      this.created.title += (new Date()).toString();
+      this.baseAuthService.widget.saveOffer(this.created).then( data => {
+        this.created = data;
+        console.log(data);
+      });
+    }
   }
-  deleteRequest() {
-      console.log('test delete');
+  deleteOffer(flag) {
+    if (flag && this.created) {
+      this.baseAuthService.widget.deleteOffer(this.created.id).then( data => {
+        this.created = undefined;
+        console.log(data);
+      });
+    }
   }
 
 }

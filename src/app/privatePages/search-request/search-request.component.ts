@@ -57,11 +57,14 @@ export class SearchRequestComponent implements OnInit {
     });
 
   }
-  deleteRequest() {
-    this.baseAuthService.widget.deleteRequest(this.createdSearchRequest).then( data => {
-      this.createdSearchRequest = undefined;
-      console.log(data);
-    });
+  deleteRequest(flag) {
+    if (flag && this.createdSearchRequest) {
+      this.baseAuthService.widget.deleteRequest(this.createdSearchRequest.id).then( data => {
+        this.createdSearchRequest = undefined;
+        console.log(data);
+      });
+    }
+
   }
 
 
