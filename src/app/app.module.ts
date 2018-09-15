@@ -14,7 +14,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SearchRequestModule } from './privatePages/search-request/search-request.module';
 import { OfferModule } from './privatePages/offer/offer.module';
 
-
 @NgModule({
   declarations: [
     AppComponent
