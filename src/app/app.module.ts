@@ -11,8 +11,8 @@ import { DashboardModule } from './privatePages/dashboard/dashboard.module';
 import { SettingsModule } from './privatePages/settings/settings.module';
 
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-
-
+import { SearchRequestModule } from './privatePages/search-request/search-request.module';
+import { OfferModule } from './privatePages/offer/offer.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     CabinetModule,
     MatProgressSpinnerModule,
     DashboardModule,
-    SettingsModule
+    SettingsModule,
+    SearchRequestModule,
+    OfferModule
   ],
   providers: [],
   bootstrap: [AppComponent]

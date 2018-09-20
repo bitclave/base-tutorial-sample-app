@@ -7,6 +7,8 @@ import { CabinetComponent } from './../privatePages/cabinet/cabinet.component';
 import { DashboardComponent } from './../privatePages/dashboard/dashboard.component';
 import { LandingComponent } from './../publicPages/landing/landing.component';
 import { SettingsComponent } from './../privatePages/settings/settings.component';
+import { SearchRequestComponent } from './../privatePages/search-request/search-request.component';
+import { OfferComponent } from './../privatePages/offer/offer.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent},
@@ -17,6 +19,14 @@ const routes: Routes = [
       {
         path: 'settings',
         component: SettingsComponent
+      },
+      {
+        path: 'search-request',
+        component: SearchRequestComponent
+      },
+      {
+        path: 'offer',
+        component: OfferComponent
       },
       {
         path: 'dashboard',

@@ -1,0 +1,13 @@
+ul { list-style: none; border: 1px solid white; padding: 10px 10px 10px 10px; }
+li { font-size: small; }
+
+span.draft {
+  color: gray;
+}
+
+li.public-key {
+  font-size: xx-small;
+}
+
+li.tag { margin-left: 30px; }
+

@@ -1,0 +1,41 @@
+<div class="search-request-container">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Search Request testing</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="verticalContainer">
+                <mat-slide-toggle
+                  (change)="getAllRequests($event)">
+                  get all requests
+                </mat-slide-toggle>
+                <div *ngIf="searchRequests">
+                  <app-search-request-item *ngFor="let item of searchRequests" [request]="item">
+                  </app-search-request-item>
+                </div>
+
+                <mat-slide-toggle
+                  (change)="createRequest($event)">
+                  create request
+                </mat-slide-toggle>
+                <div *ngIf="createdSearchRequest">
+                  <app-search-request-item [request]="createdSearchRequest"> </app-search-request-item>
+                </div>
+
+                <!-- <mat-slide-toggle
+                  (change)="updateRequest($event)">
+                  update request
+                </mat-slide-toggle> -->
+
+                <mat-slide-toggle
+                  (change)="deleteRequest($event)">
+                  delete request
+                </mat-slide-toggle>
+
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+
+

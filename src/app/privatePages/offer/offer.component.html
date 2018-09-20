@@ -1,0 +1,40 @@
+<div class="offer-request-container">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Offer testing</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div class="verticalContainer">
+                <mat-slide-toggle
+                  (change)="getAllOffers($event)">
+                  get all offers
+                </mat-slide-toggle>
+                <div *ngIf="offers">
+                  <app-offer-item *ngFor="let one of offers" [offer]="one"></app-offer-item>
+                </div>
+
+                <mat-slide-toggle
+                  (change)="createOffer($event)">
+                  create offer
+                </mat-slide-toggle>
+                <div *ngIf="created">
+                    <app-offer-item  [offer]="created"></app-offer-item>
+                </div>
+
+                <!-- <mat-slide-toggle
+                  (change)="updateOffer($event)">
+                  update offer
+                </mat-slide-toggle> -->
+
+                <mat-slide-toggle
+                  (change)="deleteOffer($event)">
+                  delete offer
+                </mat-slide-toggle>
+
+            </div>
+        </mat-card-content>
+    </mat-card>
+</div>
+
+
+

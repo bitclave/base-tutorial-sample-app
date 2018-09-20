@@ -1,0 +1,24 @@
+.verticalContainer, .horizontalContainer { display: flex;}
+.verticalContainer { flex-direction: column;}
+.horizontalContainer { flex-direction: row; width: 100%;}
+
+mat-slider { flex: 1 1 auto; }
+
+.offer-request-container {
+  min-width: 400px;
+  max-width: 50%;
+  margin: 0 auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.offer-request-container > mat-card {
+  margin-bottom: 10px;
+}
+mat-form-field.short{
+  width: 50px;
+}
+
+.offer-request-container:first-child {
+  margin-top: 20px;
+}
