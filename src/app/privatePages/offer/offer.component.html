@@ -9,6 +9,7 @@
                   (change)="getAllOffers($event)">
                   get all offers
                 </mat-slide-toggle>
+
                 <div *ngIf="offers">
                   <app-offer-item *ngFor="let one of offers" [offer]="one"></app-offer-item>
                 </div>
@@ -21,10 +22,10 @@
                     <app-offer-item  [offer]="created"></app-offer-item>
                 </div>
 
-                <!-- <mat-slide-toggle
+                <mat-slide-toggle
                   (change)="updateOffer($event)">
                   update offer
-                </mat-slide-toggle> -->
+                </mat-slide-toggle>
 
                 <mat-slide-toggle
                   (change)="deleteOffer($event)">

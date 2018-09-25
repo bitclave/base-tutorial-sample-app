@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { environment } from '../environments/environment';
 
 import { AppComponent } from './app.component';
 
@@ -29,7 +30,9 @@ import { OfferModule } from './privatePages/offer/offer.module';
     SearchRequestModule,
     OfferModule
   ],
-  providers: [],
+  providers: [
+    { provide: 'WEALTH_PK', useValue: environment.wealthValidatorPublicKey},
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

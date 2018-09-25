@@ -32,6 +32,12 @@
                   delete request
                 </mat-slide-toggle>
 
+                <mat-slide-toggle [disabled]="ethWallet"
+                  (change)="addWallets($event)">
+                  get vaulet
+                </mat-slide-toggle>
+                <pre>{{ethWallet | json}}</pre>
+
             </div>
         </mat-card-content>
     </mat-card>

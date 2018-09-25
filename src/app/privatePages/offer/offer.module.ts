@@ -10,6 +10,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { MatDividerModule } from '@angular/material/divider';
 import { OfferItemComponent } from './offer-item/offer-item.component';
 
 @NgModule({
@@ -23,6 +24,7 @@ import { OfferItemComponent } from './offer-item/offer-item.component';
     FormsModule,
     MatSlideToggleModule,
     MatButtonModule,
+    MatDividerModule
   ],
   declarations: [OfferComponent, OfferItemComponent]
 })

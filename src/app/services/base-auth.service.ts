@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { SpinnerService } from './spinner.service';
 
 import { DisplayOptions } from '../models/displayOptions';
+import { Wallets, Wallet } from '../models/wallet';
+import { Subject, BehaviorSubject } from 'rxjs';
 
 declare var BASEAuthSDK: any;
 
@@ -18,13 +20,18 @@ export class BaseAuthService {
   private _publicKey = '';
   progress = new EventEmitter<number>();
   private _sig = '';
+  wallets: Subject<Wallets> = new BehaviorSubject<Wallets>(null);
+  wealthValidatorPublicKey: string;
+  wealth: Subject<Number> = new BehaviorSubject<Number>(322);
+  wealthTimer: any;
   get publicKey(): string {
     return this._publicKey;
   }
   get allData() {
     return {
-      displayOptions: this.displayOptions,
-      karma: this.karma
+      displayOptions: this.displayOptions || new DisplayOptions(null),
+      karma: this.karma,
+      wallets: this.wallets
     };
   }
   constructor( private router: Router, private spinner: SpinnerService) {
@@ -67,6 +74,14 @@ export class BaseAuthService {
           .loadData()
           .then( result => {
             this.router.navigate(['cabinet/dashboard']);
+          })
+          .then(this.getWealth.bind(this))
+          .then(wealth => {
+            if (wealth) {
+              // console.log('start Wealth update process');
+              this.startProcessWealthUpdate(10000);
+              this.widget.refreshWealthPtr();
+            }
           });
       }, 100);
 
@@ -86,6 +101,9 @@ export class BaseAuthService {
     this._publicKey = '';
     this._sig = '';
     this.router.navigate(['']);
+    if (this.wealthTimer) {
+      this.stopProcessWealthUpdate();
+    }
   }
   loadData() {
     if (this.karma && this.displayOptions) {
@@ -101,12 +119,22 @@ export class BaseAuthService {
     return this.widget
       .getData()
       .then(result => {
-        if (result && result.size > 0 ) {
+        if (result && result.size > 0) {
           this.data = result;
+          const keys = Array.from(result.keys());
+          const allExtractors = [
+            this._extractDisplayOptions,
+            this._extractKarma,
+            this._extractWalets
+          ];
+          keys.forEach( key => {
+            try {
+              allExtractors.forEach( f => f.call(this, key, result.get(key)));
+            } catch (err) {
+              console.error(err);
+            }
+          });
         }
-        this._extractDisplayOptions(result);
-        this._extractKarma(result);
-
         this.spinner.stop();
         return this.allData;
       })
@@ -115,44 +143,25 @@ export class BaseAuthService {
         return this.allData;
       });
   }
-  _extractDisplayOptions(response) {
-    if (!this.displayOptions) {
-      this.displayOptions = new DisplayOptions({});
-    }
-    if (response && response.size > 0) {
-      const keys = Array.from(response.keys());
-
-      keys.forEach( key => {
-        if (key === DisplayOptions.key) {
-          try {
-            const value = JSON.parse(response.get(key));
-            this.displayOptions.updateValue(value);
-          } catch (err) {
-            console.error(err);
-          }
-        }
-      });
-    }
-
-  }
-  _extractKarma(response) {
-    if (response && response.size > 0) {
-      const keys = Array.from(response.keys());
-
-      keys.forEach( key => {
-        if (key === 'karma') {
-          const value = response.get(key);
-          if (!isNaN(value)) {
-            this.karma = value;
-          }
-        }
-      });
-
-    }
-    if (!this.karma) {
-      this.karma = 5.5;
+  _extractWalets(key, value) {
+    if (key === Wallets.key) {
+      this.wallets.next(new Wallets(value));
     }
   }
+  _extractDisplayOptions(key, value) {
+    if (key === DisplayOptions.key) {
+      const parsedValue = JSON.parse(value);
+      this.displayOptions.updateValue(parsedValue);
+    }
+  }
+  _extractKarma(key, value) {
+    if (key === 'karma') {
+      if (!isNaN(value)) {
+        this.karma = value;
+      }
+    }
+  }
+
 
   async saveDisplayOptions() {
     this.spinner.start();
@@ -171,5 +180,59 @@ export class BaseAuthService {
     const answer = await this.widget.updateData(data);
 
     this.spinner.stop();
+  }
+
+  async addWallet(wallet: Wallet) {
+    if (!this.wallets) {
+      this.wallets = new Wallets('');
+    }
+    this.wallets.addNewWalet(wallet);
+    const msg = this.wallets.msg; // todo is msg a string o it can be array ?
+    try {
+      const data = await this.widget.createWalletsRecords(msg, this._publicKey);
+      this.wallets.sig = data.sig;
+    } catch (err) {
+      console.error(err);
+    }
+
+  }
+  async saveWallet() {
+    const data = {};
+    const key = Wallets.key;
+    const value = this.wallets.value;
+
+    data[key] = value;
+
+    const answer = await this.widget.updateData(data);
+    console.log(answer);
+    return answer;
+  }
+  async getWealth() {
+    try {
+      console.log('the attempt to get wealth');
+      const fromPk = this._publicKey;
+      const toPk = this.wealthValidatorPublicKey;
+
+      const wealthValidatorRecord = await this.widget.getRequests(fromPk, toPk);
+
+      if (!wealthValidatorRecord || wealthValidatorRecord.length < 1) {
+        return undefined;
+      }
+      const decryptedObj = await await this.widget.getAuthorizedData(toPk, wealthValidatorRecord[0].responseData);
+      const rawMessage = decryptedObj.get(fromPk);
+      const msg = JSON.parse(rawMessage);
+      this.wealth.next(msg.wealth);
+      return this.wealth;
+
+    } catch (err) {
+      console.error(err);
+      return undefined;
+    }
+  }
+  startProcessWealthUpdate(delay: number) {
+    this.wealthTimer =  setInterval(this.getWealth.bind(this), delay);
+  }
+  stopProcessWealthUpdate() {
+    clearTimeout(this.wealthTimer);
   }
 }

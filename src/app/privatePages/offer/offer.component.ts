@@ -12,7 +12,7 @@ export class OfferComponent implements OnInit {
   created;
 
   constructor(
-    private baseAuthService: BaseAuthService
+    private baseAuthService: BaseAuthService,
   ) { }
 
   ngOnInit() {
@@ -104,6 +104,7 @@ export class OfferComponent implements OnInit {
     };
 
     this.baseAuthService.widget.saveOffer(offer).then( data => {
+    // this.baseAuthService.widget.saveOffer(offerJson).then( data => {
         this.created = data;
         console.log(data);
       });
@@ -128,5 +129,6 @@ export class OfferComponent implements OnInit {
       });
     }
   }
+
 
 }

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BaseAuthService } from '../../services/base-auth.service';
+import { AddWalletService } from '../../services/add-wallet.service';
+import { pipe } from 'rxjs';
+import { Wallets, Wallet } from '../../models/wallet';
 
 @Component({
   selector: 'app-search-request',
@@ -8,14 +11,22 @@ import { BaseAuthService } from '../../services/base-auth.service';
 })
 export class SearchRequestComponent implements OnInit {
 
+  ethWallet: Wallet;
+
   searchRequests;
   createdSearchRequest;
 
   constructor(
-    private baseAuthService: BaseAuthService
+    private baseAuthService: BaseAuthService,
+    private addWalletService: AddWalletService,
   ) { }
 
   ngOnInit() {
+    this.baseAuthService.wallets.subscribe( (wallets: Wallets) => {
+      if (wallets) {
+        this.ethWallet = wallets.ones[0]; // first wallet
+      }
+    });
   }
 
   getAllRequests(flag) {
@@ -64,8 +75,20 @@ export class SearchRequestComponent implements OnInit {
         console.log(data);
       });
     }
-
   }
-
+  addWallets() {
+    this
+      .addWalletService
+      .getEtheriumSignature()
+      .then( data =>
+        this.baseAuthService.addWallet(data)
+      )
+      .then( () =>
+        this.baseAuthService.saveWallet()
+      )
+      .catch(err =>
+        console.error(err)
+      );
+    }
 
 }
