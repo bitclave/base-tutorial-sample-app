@@ -16,7 +16,6 @@ export class BaseAuthService {
   displayOptions: DisplayOptions;
   karma: Number;
   widget: any;
-  BaseTools: any;
   authorized = false;
   private _publicKey = '';
   progress = new EventEmitter<number>();
@@ -61,7 +60,6 @@ export class BaseAuthService {
         'background': '#19191e'
       }
     });
-    this.BaseTools = BASEAuthSDK.BaseTools;
     this.widget.insertLoginButton('#base-login');
 
     this.widget.listenForLogin( account => {
