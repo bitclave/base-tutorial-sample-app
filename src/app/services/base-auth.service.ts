@@ -16,11 +16,13 @@ export class BaseAuthService {
   displayOptions: DisplayOptions;
   karma: Number;
   widget: any;
+  BaseTools: any;
   authorized = false;
   private _publicKey = '';
   progress = new EventEmitter<number>();
   private _sig = '';
   wallets: Subject<Wallets> = new BehaviorSubject<Wallets>(null);
+  private _wallets: Wallets;
   wealthValidatorPublicKey: string;
   wealth: Subject<Number> = new BehaviorSubject<Number>(322);
   wealthTimer: any;
@@ -59,6 +61,7 @@ export class BaseAuthService {
         'background': '#19191e'
       }
     });
+    this.BaseTools = BASEAuthSDK.BaseTools;
     this.widget.insertLoginButton('#base-login');
 
     this.widget.listenForLogin( account => {
@@ -183,14 +186,17 @@ export class BaseAuthService {
   }
 
   async addWallet(wallet: Wallet) {
-    if (!this.wallets) {
-      this.wallets = new Wallets('');
+    if (!this._wallets) {
+      this._wallets = new Wallets('');
     }
-    this.wallets.addNewWalet(wallet);
-    const msg = this.wallets.msg; // todo is msg a string o it can be array ?
+    this._wallets.addNewWalet(wallet);
+    const msg = this._wallets.msg; // todo is msg a string o it can be array ?
     try {
       const data = await this.widget.createWalletsRecords(msg, this._publicKey);
-      this.wallets.sig = data.sig;
+      this._wallets.sig = data.sig;
+
+      this.wallets.next(this._wallets);
+
     } catch (err) {
       console.error(err);
     }
@@ -199,7 +205,7 @@ export class BaseAuthService {
   async saveWallet() {
     const data = {};
     const key = Wallets.key;
-    const value = this.wallets.value;
+    const value = this._wallets.value;
 
     data[key] = value;
 

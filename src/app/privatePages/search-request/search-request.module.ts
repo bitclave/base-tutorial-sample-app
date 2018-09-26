@@ -13,6 +13,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
+import { OfferModule } from './../offer/offer.module';
 
 @NgModule({
   imports: [
@@ -25,6 +26,7 @@ import { MatInputModule } from '@angular/material/input';
     FormsModule,
     MatSlideToggleModule,
     MatButtonModule,
+    OfferModule
   ],
   declarations: [
     SearchRequestComponent,

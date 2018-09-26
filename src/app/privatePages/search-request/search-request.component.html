@@ -38,6 +38,17 @@
                 </mat-slide-toggle>
                 <pre>{{ethWallet | json}}</pre>
 
+                <mat-slide-toggle
+                  (change)="getSearchResultByRequestId($event)">
+                  get saarch result by request id=
+                  <span *ngIf="createdSearchRequest">{{createdSearchRequest.id}}</span>
+                </mat-slide-toggle>
+                <div *ngIf="offers">
+                    <app-offer-item *ngFor="let one of offers" [offer]="one"></app-offer-item>
+                  <!-- <pre *ngFor="let offer of offers">{{offer|json}}</pre> -->
+                </div>
+
+
             </div>
         </mat-card-content>
     </mat-card>

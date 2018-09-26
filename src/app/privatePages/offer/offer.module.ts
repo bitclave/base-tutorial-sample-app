@@ -26,6 +26,9 @@ import { OfferItemComponent } from './offer-item/offer-item.component';
     MatButtonModule,
     MatDividerModule
   ],
-  declarations: [OfferComponent, OfferItemComponent]
+  declarations: [OfferComponent, OfferItemComponent],
+  exports: [
+    OfferItemComponent
+  ]
 })
 export class OfferModule { }

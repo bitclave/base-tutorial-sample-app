@@ -12,6 +12,7 @@ import { Wallets, Wallet } from '../../models/wallet';
 export class SearchRequestComponent implements OnInit {
 
   ethWallet: Wallet;
+  offers;
 
   searchRequests;
   createdSearchRequest;
@@ -89,6 +90,14 @@ export class SearchRequestComponent implements OnInit {
       .catch(err =>
         console.error(err)
       );
-    }
+  }
 
+  getSearchResultByRequestId(flag) {
+    if (flag && flag.checked && this.createdSearchRequest) {
+      this.baseAuthService
+        .widget
+        .getSearchResultByRequestId(this.createdSearchRequest.id)
+        .then( searchResults => this.offers = searchResults);
+    }
+  }
 }
