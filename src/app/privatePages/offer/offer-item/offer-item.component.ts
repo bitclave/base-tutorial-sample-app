@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-offer-item',
@@ -8,6 +8,8 @@ import { Component, OnInit, Input } from '@angular/core';
 export class OfferItemComponent implements OnInit {
 
   @Input() offer;
+  @Input() offerSearch;
+  @Output() acceptOfferByPriceId = new EventEmitter();
   constructor() { }
 
   ngOnInit() {
@@ -15,6 +17,9 @@ export class OfferItemComponent implements OnInit {
 
   getKeys(map) {
     return Array.from(map.keys());
+  }
+  acceptOfferWithPrice(price) {
+    this.acceptOfferByPriceId.emit({ price, offerSearch: this.offerSearch });
   }
 
 }

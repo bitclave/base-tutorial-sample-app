@@ -12,7 +12,7 @@ import { Wallets, Wallet } from '../../models/wallet';
 export class SearchRequestComponent implements OnInit {
 
   ethWallet: Wallet;
-  offers;
+  matchedOffers;
 
   searchRequests;
   createdSearchRequest;
@@ -97,7 +97,32 @@ export class SearchRequestComponent implements OnInit {
       this.baseAuthService
         .widget
         .getSearchResultByRequestId(this.createdSearchRequest.id)
-        .then( searchResults => this.offers = searchResults);
+        .then( searchResults =>
+          this.matchedOffers = searchResults
+        );
     }
   }
+
+  grantAccessForOffer(data) {
+    const pk = this.baseAuthService.publicKey;
+    const price = data.price;
+    const offerSearch = data.offerSearch;
+
+    const fields = new Map<string, AccessRight>();
+    if (price.rules && price.rules.length > 0) {
+        price.rules.forEach(element => {
+            fields.set(element.rulesKey, AccessRight.R);
+        });
+    }
+
+    this.baseAuthService
+      .widget
+      .grantAccessForOffer(offerSearch.id, pk, fields, price.id)
+      .then();
+  }
+}
+
+export enum AccessRight {
+  R = 0,
+  RW = 1
 }

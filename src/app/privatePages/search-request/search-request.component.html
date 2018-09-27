@@ -43,9 +43,13 @@
                   get saarch result by request id=
                   <span *ngIf="createdSearchRequest">{{createdSearchRequest.id}}</span>
                 </mat-slide-toggle>
-                <div *ngIf="offers">
-                    <app-offer-item *ngFor="let one of offers" [offer]="one"></app-offer-item>
-                  <!-- <pre *ngFor="let offer of offers">{{offer|json}}</pre> -->
+                <div *ngIf="matchedOffers">
+                    <app-offer-item
+                      *ngFor="let one of matchedOffers"
+                      [offer]="one.offer"
+                      [offerSearch]="one.offerSearch"
+                      (acceptOfferByPriceId)="grantAccessForOffer($event)">
+                    </app-offer-item>
                 </div>
 
 

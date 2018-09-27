@@ -4,5 +4,16 @@
   <li class="tag" *ngFor="let one of getKeys(request.tags)">
     {{one}} : {{request.tags.get(one)}}
   </li>
+  <li>
+    <a (click)=findOffer(request.id)  href="">find offer</a>
+    <div *ngIf="matchedOffers">
+        <app-offer-item
+          *ngFor="let one of matchedOffers"
+          [offer]="one.offer"
+          [offerSearch]="one.offerSearch"
+          (acceptOfferByPriceId)="grantAccessForOffer($event)">
+        </app-offer-item>
+    </div>
+  </li>
 </ul>
 
