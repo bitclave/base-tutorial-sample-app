@@ -9,13 +9,15 @@
     <ul>
         <li class="tag" *ngFor="let price of offer.offerPrices">
             {{price.id}}) {{price.description}} : {{price.worth}} CAT
-            <a (click)="acceptOfferWithPrice(price)" href="">accept</a>
-            <ul>
+            <ul class="rules">
                 <li class="tag" *ngFor="let rule of price.rules">
                     {{rule.id}}) {{rule.rulesKey}} : {{rule.value}} : {{rule.rule}}
 
                 </li>
+
             </ul>
+            <br>
+            <button mat-stroked-button (click)="acceptOfferWithPrice(price)" color="primary">accept</button>
         </li>
     </ul>
 

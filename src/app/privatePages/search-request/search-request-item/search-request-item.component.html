@@ -5,7 +5,7 @@
     {{one}} : {{request.tags.get(one)}}
   </li>
   <li>
-    <a (click)=findOffer(request.id)  href="">find offer</a>
+    <button mat-stroked-button (click)=findOffer(request.id) color="primary">find offer</button>
     <div *ngIf="matchedOffers">
         <app-offer-item
           *ngFor="let one of matchedOffers"

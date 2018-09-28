@@ -10,4 +10,7 @@ li.public-key {
 }
 
 li.tag { margin-left: 30px; }
+li>button {
+  margin-top: 10px;
+}
 
