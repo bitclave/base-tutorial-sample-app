@@ -19,7 +19,7 @@ export class OfferItemComponent implements OnInit {
     return Array.from(map.keys());
   }
   acceptOfferWithPrice(price) {
-    this.acceptOfferByPriceId.emit({ price, offerSearch: this.offerSearch });
+    this.acceptOfferByPriceId.emit({ price, offerSearch: this.offerSearch, offer: this.offer });
   }
 
 }

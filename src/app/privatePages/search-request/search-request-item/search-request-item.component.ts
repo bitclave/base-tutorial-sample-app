@@ -34,6 +34,7 @@ export class SearchRequestItemComponent implements OnInit {
     const pk = this.baseAuthService.publicKey;
     const price = data.price;
     const offerSearch = data.offerSearch;
+    const offer = data.offer;
 
     const fields = new Map<string, AccessRight>();
     if (price.rules && price.rules.length > 0) {
@@ -41,10 +42,11 @@ export class SearchRequestItemComponent implements OnInit {
             fields.set(element.rulesKey, AccessRight.R);
         });
     }
+    console.log('grantAccessForOffer: data=', data)
 
     this.baseAuthService
       .widget
-      .grantAccessForOffer(offerSearch.id, pk, fields, price.id)
+      .grantAccessForOffer(offerSearch.id, offer.owner, fields, price.id)
       .catch(err =>
         console.log(err)
       );
