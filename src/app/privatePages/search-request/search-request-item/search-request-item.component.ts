@@ -31,18 +31,20 @@ export class SearchRequestItemComponent implements OnInit {
       );
   }
   grantAccessForOffer(data) {
-    const pk = this.baseAuthService.publicKey;
+
     const price = data.price;
     const offerSearch = data.offerSearch;
     const offer = data.offer;
 
     const fields = new Map<string, AccessRight>();
+    fields.set('eth_wallets', AccessRight.R);
     if (price.rules && price.rules.length > 0) {
         price.rules.forEach(element => {
             fields.set(element.rulesKey, AccessRight.R);
         });
     }
-    console.log('grantAccessForOffer: data=', data)
+
+    console.log('grantAccessForOffer: data=', data);
 
     this.baseAuthService
       .widget
