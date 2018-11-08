@@ -13,6 +13,7 @@ import { SettingsModule } from './privatePages/settings/settings.module';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SearchRequestModule } from './privatePages/search-request/search-request.module';
 import { OfferModule } from './privatePages/offer/offer.module';
+import { ExternalProvidersModule } from './privatePages/external-providers/external-providers.module';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { OfferModule } from './privatePages/offer/offer.module';
     DashboardModule,
     SettingsModule,
     SearchRequestModule,
-    OfferModule
+    OfferModule,
+    ExternalProvidersModule
   ],
   providers: [],
   bootstrap: [AppComponent]

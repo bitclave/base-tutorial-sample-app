@@ -37,6 +37,9 @@ export class CabinetComponent implements OnInit {
     this.matIconRegistry.addSvgIcon(
       `services`, this.domSanitizer.bypassSecurityTrustResourceUrl(`./assets/Services.svg`)
     );
+    this.matIconRegistry.addSvgIcon(
+      `fingerprint`, this.domSanitizer.bypassSecurityTrustResourceUrl(`./assets/fingerprint.svg`)
+    );
     this.navigationStateService.title.subscribe( title =>
       this.title = title
     );

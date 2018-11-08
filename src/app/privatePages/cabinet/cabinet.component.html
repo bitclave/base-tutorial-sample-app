@@ -70,6 +70,13 @@
           <span *ngIf="!isCompactMenu" class="cabinet-navigation">Offers</span>
         </mat-list-item>
       </mat-nav-list>
+
+      <mat-nav-list>
+        <mat-list-item [class.cursorHere]="(menuItem | async) === 'search-request'"  routerLink="/cabinet/providers">
+          <mat-icon class="navigation dashboard" svgIcon="fingerprint"></mat-icon>
+          <span *ngIf="!isCompactMenu" class="cabinet-navigation">Providers</span>
+        </mat-list-item>
+      </mat-nav-list>
     </div>
 
     <button mat-button class="button_togle_sidebar" (click)="transformSideNav()"><span><</span></button> -->

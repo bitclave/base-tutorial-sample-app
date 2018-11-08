@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { SpinnerService } from './spinner.service';
 
 import { DisplayOptions } from '../models/displayOptions';
+import { ToBASE } from '../models/iToBASE';
 
 declare var BASEAuthSDK: any;
 
@@ -152,6 +153,13 @@ export class BaseAuthService {
     if (!this.karma) {
       this.karma = 5.5;
     }
+  }
+
+  async saveKeyValue(data: ToBASE) {
+    this.spinner.start();
+    const answer = await this.widget.updateData(data.toBASE());
+    this.spinner.stop();
+    return answer;
   }
 
   async saveDisplayOptions() {

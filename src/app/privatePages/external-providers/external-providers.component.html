@@ -1,0 +1,22 @@
+<div class="external-provider-container">
+    <mat-card>
+      <mat-card-header>
+          <mat-card-title>External providers</mat-card-title>
+      </mat-card-header>
+      <mat-card-content class="vertical-container" >
+        <button color="primary" [disabled]="token" (click)="startGoogleAuth()" mat-button>Google</button>
+        <button color="primary" (click)="startGoogleAuth()" mat-button>Go Daddy</button>
+        <button color="primary" (click)="startGoogleAuth()" mat-button>Cloudflare</button>
+        <button (click)="provideAccess()" mat-stroked-button color="primary">Open data to insurance service</button>
+      </mat-card-content>
+    </mat-card>
+    <mat-card *ngIf="token">
+        <h2>token</h2>
+        <pre> {{token|json}}</pre>
+
+    </mat-card>
+    <mat-card *ngIf="saveToBaseState">
+      <h2>BASE response</h2>
+      <pre> {{saveToBaseState|json}}</pre>
+    </mat-card>
+</div>

@@ -9,6 +9,7 @@ import { LandingComponent } from './../publicPages/landing/landing.component';
 import { SettingsComponent } from './../privatePages/settings/settings.component';
 import { SearchRequestComponent } from './../privatePages/search-request/search-request.component';
 import { OfferComponent } from './../privatePages/offer/offer.component';
+import { ExternalProvidersComponent } from './../privatePages/external-providers/external-providers.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent},
@@ -27,6 +28,10 @@ const routes: Routes = [
       {
         path: 'offer',
         component: OfferComponent
+      },
+      {
+        path: 'providers',
+        component: ExternalProvidersComponent
       },
       {
         path: 'dashboard',

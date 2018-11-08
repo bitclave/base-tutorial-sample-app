@@ -1,0 +1,21 @@
+
+.external-provider-container, .vertical-container { display: flex; }
+.external-provider-container {
+  min-width: 400px;
+  max-width: 70%;
+  margin: 0 auto 0 auto;
+
+  flex-direction: column;
+  justify-content: center;
+}
+ul {
+  list-style: none;
+}
+.vertical-container{
+  flex-direction: column;
+  justify-content: start;
+  align-items: flex-start;
+}
+pre {
+  font-size: xx-small;
+}
