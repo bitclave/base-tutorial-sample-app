@@ -5,8 +5,10 @@
 export const environment = {
   production: false,
   API: {
-    oauth2: 'http://localhost:3050'
-  }
+    oauth2: 'http://localhost:3050',
+    riskAnalyzer: 'http://localhost:3051'
+  },
+  googleTokenKey: 'csr_partner_gsuite'
 };
 
 /*

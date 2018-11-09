@@ -1,4 +1,5 @@
 import { ToBASE } from './iToBASE';
+import { environment } from './../../environments/environment';
 
 export class GoogleCredential implements ToBASE {
   access_token: string;
@@ -14,9 +15,10 @@ export class GoogleCredential implements ToBASE {
     this.scope = obj && obj.scope;
     this.token_type = obj && obj.token_type;
   }
-  toBASE(): {[key: string]: string} {
+  toBASE(key?: string): {[key: string]: string} {
+    const keyToBase = key || environment.googleTokenKey;
     return {
-      csr_partner_gsuite: JSON.stringify({ api_key: this.access_token })
+      [ keyToBase ]: JSON.stringify({ api_key: this.access_token })
     };
   }
 }

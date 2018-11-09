@@ -155,9 +155,9 @@ export class BaseAuthService {
     }
   }
 
-  async saveKeyValue(data: ToBASE) {
+  async save(data: ToBASE, key?: string) {
     this.spinner.start();
-    const answer = await this.widget.updateData(data.toBASE());
+    const answer = await this.widget.updateData(data.toBASE(key));
     this.spinner.stop();
     return answer;
   }
@@ -178,6 +178,13 @@ export class BaseAuthService {
     data[key] = this.karma.toString();
     const answer = await this.widget.updateData(data);
 
+    this.spinner.stop();
+  }
+
+  async grantAccessForClient(pk, acceptedFields) {
+    this.spinner.start();
+    const answer = await this.widget.grantAccessForClient(pk, acceptedFields);
+    console.log('grantAccessForClient', answer);
     this.spinner.stop();
   }
 }

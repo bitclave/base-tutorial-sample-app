@@ -29,10 +29,17 @@ export class ExternalProvidersService {
       });
     }
     provideAccess() {
-
+      const url = environment.API.riskAnalyzer + '/assessment/contract';
+      this.http.get(url).subscribe( (response: any) => {
+        const pk = response.publicKey;
+        const key = environment.googleTokenKey;
+        const acceptedFields = new Map();
+        acceptedFields.set(key, 0);
+        this.baseAuth.grantAccessForClient(pk, acceptedFields);
+      });
     }
     async sendTokenToBASE(token: GoogleCredential) {
-      const response = await this.baseAuth.saveKeyValue(token);
+      const response = await this.baseAuth.save(token);
       this.state.next(response);
     }
     private async insistentlyRetrievToken() {

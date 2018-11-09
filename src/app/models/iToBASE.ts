@@ -1,3 +1,3 @@
 export interface ToBASE {
-  toBASE();
+  toBASE(key?: string);
 }
