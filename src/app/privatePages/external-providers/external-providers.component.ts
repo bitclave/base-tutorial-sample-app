@@ -37,5 +37,8 @@ export class ExternalProvidersComponent implements OnInit {
   provideAccess() {
     this.externalProviderService.provideAccess();
   }
+  getAssessment() {
+    this.externalProviderService.getAssessment();
+  }
 
 }

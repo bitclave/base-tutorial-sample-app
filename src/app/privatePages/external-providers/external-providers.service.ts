@@ -29,13 +29,23 @@ export class ExternalProvidersService {
       });
     }
     provideAccess() {
-      const url = environment.API.riskAnalyzer + '/assessment/contract';
+      const url = environment.API.riskAnalyzer + '/contract';
       this.http.get(url).subscribe( (response: any) => {
         const pk = response.publicKey;
         const key = environment.googleTokenKey;
         const acceptedFields = new Map();
         acceptedFields.set(key, 0);
         this.baseAuth.grantAccessForClient(pk, acceptedFields);
+      });
+    }
+
+    getAssessment() {
+      const url = environment.API.riskAnalyzer + '/assessment';
+      const data = {
+        publicKey: this.baseAuth.publicKey
+      };
+      this.http.post(url, data).subscribe( (response: any) => {
+        console.log(response);
       });
     }
     async sendTokenToBASE(token: GoogleCredential) {

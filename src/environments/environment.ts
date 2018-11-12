@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   API: {
     oauth2: 'http://localhost:3050',
-    riskAnalyzer: 'http://localhost:3051'
+    riskAnalyzer: 'http://localhost:3010',
   },
   googleTokenKey: 'csr_partner_gsuite'
 };
