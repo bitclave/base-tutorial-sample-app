@@ -64,7 +64,7 @@ export class ExternalProvidersService {
 
           await this.sendTokenToBASE(token);
         }
-        await this.pause(15);
+        await this.pause(2);
       } while (!token);
       console.log('the token was retrieved !!!');
     }
