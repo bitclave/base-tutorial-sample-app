@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from './../../../environments/environment';
 import { BaseAuthService } from 'src/app/services/base-auth.service';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Subject, Observable } from 'rxjs';
 import { GoogleCredential } from 'src/app/models/googleCredential';
+import { Subscribe } from 'web3/types';
 
 @Injectable({
   providedIn: 'root'
@@ -39,14 +40,28 @@ export class ExternalProvidersService {
       });
     }
 
-    getAssessment() {
+    getAssessment(): Observable<any> {
       const url = environment.API.riskAnalyzer + '/assessment';
       const data = {
         publicKey: this.baseAuth.publicKey
       };
-      this.http.post(url, data).subscribe( (response: any) => {
-        console.log(response);
-      });
+      return this.http.post(url, data);
+    }
+    getAssessmentByCategory(category?: string): Observable<any> {
+      const url = environment.API.riskAnalyzer + '/assessment/byCategory';
+      const data = {
+        publicKey: this.baseAuth.publicKey,
+        category
+      };
+      return this.http.post(url, data);
+    }
+    getAssessmentBySubCategory(subCategory?: string): Observable<any> {
+      const url = environment.API.riskAnalyzer + '/assessment/bySubCategory';
+      const data = {
+        publicKey: this.baseAuth.publicKey,
+        subCategory
+      };
+      return this.http.post(url, data);
     }
     async sendTokenToBASE(token: GoogleCredential) {
       const response = await this.baseAuth.save(token);
