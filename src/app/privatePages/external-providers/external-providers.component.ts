@@ -13,6 +13,13 @@ export class ExternalProvidersComponent implements OnInit {
   token: GoogleCredential;
   saveToBaseState;
 
+
+  assessment;
+  category = 'csrc_internal_permissions';
+  assessmentByCategory;
+  subCategory = 'csrc_internal_permissions_detailed_results_user_stats';
+  assessmentBySubCategory;
+
   constructor(
     private externalProviderService: ExternalProvidersService
   ) {
@@ -38,7 +45,25 @@ export class ExternalProvidersComponent implements OnInit {
     this.externalProviderService.provideAccess();
   }
   getAssessment() {
-    this.externalProviderService.getAssessment();
+    this.externalProviderService
+      .getAssessment()
+      .subscribe( data =>
+        this.assessment = data
+      );
+  }
+  getAssessmentByCategory() {
+    this.externalProviderService
+      .getAssessmentByCategory(this.category)
+      .subscribe( data =>
+        this.assessmentByCategory = data
+      );
+  }
+  getAssessmentBySubCategory() {
+    this.externalProviderService
+      .getAssessmentBySubCategory(this.subCategory)
+      .subscribe( data =>
+        this.assessmentBySubCategory = data
+      );
   }
 
 }

@@ -7,16 +7,25 @@
         <button color="primary" [disabled]="token" (click)="startGoogleAuth()" mat-button>Google</button>
         <button color="primary" (click)="startGoogleAuth()" mat-button>Go Daddy</button>
         <button color="primary" (click)="startGoogleAuth()" mat-button>Cloudflare</button>
-        <button (click)="provideAccess()" mat-stroked-button color="primary">Open data to insurance service</button>
+        <button (click)="provideAccess()" mat-stroked-button color="primary">Grant access a google token to the insurance service</button>
         <br>
         <button (click)="getAssessment()" mat-stroked-button color="primary">Get assessment</button>
+        <pre>{{assessment|json}}</pre>
+        <button (click)="getAssessmentByCategory()" mat-stroked-button color="primary">Get assessment by category</button>
+        <pre>{{assessmentByCategory|json}}</pre>
+        <button (click)="getAssessmentBySubCategory()" mat-stroked-button color="primary">Get assessment by subCategory</button>
+        <pre>{{assessmentBySubCategory|json}}</pre>
+
+        <p></p>
       </mat-card-content>
     </mat-card>
+    <br>
     <mat-card *ngIf="token">
         <h2>token</h2>
         <pre> {{token|json}}</pre>
 
     </mat-card>
+    <br>
     <mat-card *ngIf="saveToBaseState">
       <h2>BASE response</h2>
       <pre> {{saveToBaseState|json}}</pre>
