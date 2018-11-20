@@ -18,7 +18,13 @@ export class GoogleCredential implements ToBASE {
   toBASE(key?: string): {[key: string]: string} {
     const keyToBase = key || environment.googleTokenKey;
     return {
-      [ keyToBase ]: JSON.stringify({ api_key: this.access_token })
+      [ keyToBase ]: JSON.stringify({
+        api_key: this.access_token,
+        expiry_date: this.expiry_date,
+        refresh_token: this.refresh_token,
+        scope: this.scope,
+        token_type: this.token_type
+      })
     };
   }
 }
