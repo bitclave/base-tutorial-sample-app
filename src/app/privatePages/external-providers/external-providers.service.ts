@@ -12,6 +12,7 @@ import { Subscribe } from 'web3/types';
 export class ExternalProvidersService {
     token: Subject<GoogleCredential> = new BehaviorSubject<GoogleCredential>(null);
     state: Subject<any> = new BehaviorSubject<any>(null);
+    authWindow;
 
     constructor(
         private http: HttpClient,
@@ -25,7 +26,7 @@ export class ExternalProvidersService {
       };
       this.http.post(url, data).subscribe( (response: any) => {
         const googleUrl = response.url;
-        window.open(googleUrl);
+        this.authWindow = window.open(googleUrl);
         this.insistentlyRetrievToken();
       });
     }
@@ -82,6 +83,10 @@ export class ExternalProvidersService {
         await this.pause(2);
       } while (!token);
       console.log('the token was retrieved !!!');
+      if (this.authWindow) {
+        this.authWindow.close();
+      }
+
     }
     private pause(sec): Promise<any> {
       return new Promise((resolve, reject) => {
