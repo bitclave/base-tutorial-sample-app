@@ -51,7 +51,8 @@ export class BaseAuthService {
         'text-align' : 'center',
         'outline' : 'none',
         'background': '#19191e'
-      }
+      },
+      isMnemonicScreen: false
     });
     this.widget.insertLoginButton('#base-login');
 
@@ -76,6 +77,9 @@ export class BaseAuthService {
     this.widget.listenForLogout(() => {
       this.signOut();
     });
+  }
+  signInProgrammatically() {
+    BASEAuthSDK.openSignInProgrammatically();
   }
 
   delete() {

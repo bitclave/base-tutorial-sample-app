@@ -12,5 +12,8 @@ export class LandingComponent implements OnInit {
 
   ngOnInit() {
   }
+  signInProgrammatically() {
+    this.baseAuthService.signInProgrammatically();
+  }
 
 }
